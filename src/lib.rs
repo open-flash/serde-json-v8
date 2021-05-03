@@ -324,7 +324,7 @@ extern crate serde_json;
 #[cfg(feature = "preserve_order")]
 extern crate indexmap;
 extern crate itoa;
-extern crate ryu;
+extern crate double_conversion;
 
 #[doc(inline)]
 pub use serde_json::de::{from_reader, from_slice, from_str, Deserializer, StreamDeserializer};

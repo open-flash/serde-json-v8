@@ -53,12 +53,9 @@ impl Formatter for CompactV8Formatter {
         where
           W: io::Write,
     {
-        let nearest_int = value.round() as i64;
-        if value == (nearest_int as f32) {
-            serde_json::ser::CompactFormatter.write_i64(writer, nearest_int)
-        } else {
-            serde_json::ser::CompactFormatter.write_f64(writer, value.into())
-        }
+        let mut buffer = double_conversion::Buffer::new();
+        let s = buffer.format(f64::from(value));
+        writer.write_all(s.as_bytes())
     }
 
     #[inline]
@@ -66,12 +63,9 @@ impl Formatter for CompactV8Formatter {
         where
           W: io::Write,
     {
-        let nearest_int = value.round() as i64;
-        if value == (nearest_int as f64) {
-            serde_json::ser::CompactFormatter.write_i64(writer, nearest_int)
-        } else {
-            serde_json::ser::CompactFormatter.write_f64(writer, value)
-        }
+        let mut buffer = double_conversion::Buffer::new();
+        let s = buffer.format(value);
+        writer.write_all(s.as_bytes())
     }
 }
 
@@ -110,12 +104,9 @@ impl<'a> Formatter for PrettyV8Formatter<'a> {
         where
           W: io::Write,
     {
-        let nearest_int = value.round() as i64;
-        if value == (nearest_int as f32) {
-            self.inner.write_i64(writer, nearest_int)
-        } else {
-            self.inner.write_f64(writer, value.into())
-        }
+        let mut buffer = double_conversion::Buffer::new();
+        let s = buffer.format(f64::from(value));
+        writer.write_all(s.as_bytes())
     }
 
     #[inline]
@@ -123,12 +114,9 @@ impl<'a> Formatter for PrettyV8Formatter<'a> {
         where
           W: io::Write,
     {
-        let nearest_int = value.round() as i64;
-        if value == (nearest_int as f64) {
-            self.inner.write_i64(writer, nearest_int)
-        } else {
-            self.inner.write_f64(writer, value)
-        }
+        let mut buffer = double_conversion::Buffer::new();
+        let s = buffer.format(value);
+        writer.write_all(s.as_bytes())
     }
 
     #[inline]
