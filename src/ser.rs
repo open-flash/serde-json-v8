@@ -53,7 +53,7 @@ impl Formatter for CompactV8Formatter {
         where
           W: io::Write,
     {
-        let mut buffer = double_conversion::Buffer::new();
+        let mut buffer = ryu_js::Buffer::new();
         let s = buffer.format(f64::from(value));
         writer.write_all(s.as_bytes())
     }
@@ -63,7 +63,7 @@ impl Formatter for CompactV8Formatter {
         where
           W: io::Write,
     {
-        let mut buffer = double_conversion::Buffer::new();
+        let mut buffer = ryu_js::Buffer::new();
         let s = buffer.format(value);
         writer.write_all(s.as_bytes())
     }
@@ -104,7 +104,7 @@ impl<'a> Formatter for PrettyV8Formatter<'a> {
         where
           W: io::Write,
     {
-        let mut buffer = double_conversion::Buffer::new();
+        let mut buffer = ryu_js::Buffer::new();
         let s = buffer.format(f64::from(value));
         writer.write_all(s.as_bytes())
     }
@@ -114,7 +114,7 @@ impl<'a> Formatter for PrettyV8Formatter<'a> {
         where
           W: io::Write,
     {
-        let mut buffer = double_conversion::Buffer::new();
+        let mut buffer = ryu_js::Buffer::new();
         let s = buffer.format(value);
         writer.write_all(s.as_bytes())
     }
